@@ -119,6 +119,7 @@ Route::prefix('admin')->name('admin.')->middleware('role:admin')->group(function
         Route::post('/store','Admin\MenuController@store')->name('store');
         Route::get('/del/{id}/','Admin\MenuController@delete')->name('delete');
         Route::get('/manage/{id}/','Admin\MenuController@manage')->name('manage');
+        Route::post('/update_link/{id}/','Admin\MenuController@updateLink')->name('update.link');
         Route::post('/manage/update/{id}','Admin\MenuController@manageUpdate')->name('manage.update');
     });
 

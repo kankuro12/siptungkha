@@ -19,11 +19,16 @@
             /* margin-right: auto !important; */
         }
 
+        .dropdown-item:focus, .dropdown-item:hover {
+            background: rgba(255,255,255,0.05) !important;
+        }
+
       </style>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
-          <li class="nav-item dropdown">
+
+          {{-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Members Directory
             </a>
@@ -31,11 +36,11 @@
               <li><a class="dropdown-item" href="{{ route('member.list')}}">Members</a></li>
               <li><a class="dropdown-item" href="{{ route('member.board')}}">Board Members</a></li>
             </ul>
-          </li>
+          </li> --}}
           {{-- <li class="nav-item">
             <a class="nav-link" href="{{ route('about')}}">About Us </a>
           </li> --}}
-          <li class="nav-item dropdown">
+          {{-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Media Center
             </a>
@@ -50,7 +55,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ route('event.list')}}">Events </a>
-          </li>
+          </li> --}}
 
           @foreach (App\Models\Menu::with('submenu')->where('parent_id',0)->get() as $attr)
             @if ($attr->type==4)
@@ -61,23 +66,38 @@
                     @if (count($attr->submenu))
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         @foreach ($attr->submenu as $item)
+                        @if ($item->type!=5)
                         <li>
                             <a class="dropdown-item" href="{{ route('page',$item->id)}}">{{ $item->title}} </a>
                         </li>
+                        @else
+                        <li>
+                            <a class="dropdown-item" href="{{ $item->link}}">{{ $item->title}} </a>
+                        </li>
+                        @endif
                         @endforeach
                     </ul>
                     @endif
                 </li>
+
             @else
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('page',$attr->id)}}">{{ $attr->title}} </a>
+                @if ($attr->type!=5)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('page',$attr->id)}}">{{ $attr->title}} </a>
+                        </li>
+                        @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ $attr->link}}">{{ $attr->title}} </a>
+                        </li>
+                        @endif
             </li>
             @endif
           @endforeach
 
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a class="nav-link" href="{{ route('contact')}}">Contact </a>
-          </li>
+          </li> --}}
           {{-- <li class="nav-item">
             <a class="nav-link" href="https://docs.google.com/forms/d/e/1FAIpQLSfHK0PHDSq9V8IeNYIJPXjVY4VVzZgAQq9VGUKe7BuVCAuzIg/viewform" target="_balnk">Feedback </a>
           </li> --}}

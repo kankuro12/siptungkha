@@ -23,6 +23,7 @@ class MenuController extends Controller
         $menu->title = $request->title;
         $menu->parent_id = $request->parent_id;
         $menu->type = $request->type;
+        $menu->link = $request->link;
         $menu->save();
         if ($menu->type == 1) {
             $page = new Menupage();
@@ -35,6 +36,12 @@ class MenuController extends Controller
         return redirect()->back()->with('success', 'Menu added successfully.');
     }
 
+    public function updateLink($id,Request $request)
+    {
+        Menu::where('id',$id)->update(['link'=>$request->link]);
+        return redirect()->back()->with('success', 'Link updated successfully.');
+
+    }
     public function delete($id)
     {
         $menu = Menu::where('id', $id)->first();
