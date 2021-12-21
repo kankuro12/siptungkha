@@ -19,4 +19,12 @@ class ElibraryController extends Controller
         $e->save();
         return redirect()->back()->with('success','Data addedd successfully!');
     }
+
+    public function delete($id){
+        // dd($request->all());
+        $e =  Elibrary::find($id);
+
+        $e->delete();
+        return redirect()->back()->with('success','Data Deleted successfully!');
+    }
 }
