@@ -53,20 +53,26 @@
           </li>
 
           @foreach (App\Models\Menu::with('submenu')->where('parent_id',0)->get() as $attr)
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="{{ route('page',$attr->id)}}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  {{ $attr->title }}
-                </a>
-                @if (count($attr->submenu))
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    @foreach ($attr->submenu as $item)
-                    <li>
-                        <a class="dropdown-item" href="{{ route('page',$item->id)}}">{{ $item->title}} </a>
-                    </li>
-                    @endforeach
-                </ul>
-                @endif
+            @if ($attr->type==4)
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="{{ route('page',$attr->id)}}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{ $attr->title }}
+                    </a>
+                    @if (count($attr->submenu))
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        @foreach ($attr->submenu as $item)
+                        <li>
+                            <a class="dropdown-item" href="{{ route('page',$item->id)}}">{{ $item->title}} </a>
+                        </li>
+                        @endforeach
+                    </ul>
+                    @endif
+                </li>
+            @else
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('page',$attr->id)}}">{{ $attr->title}} </a>
             </li>
+            @endif
           @endforeach
 
           <li class="nav-item">

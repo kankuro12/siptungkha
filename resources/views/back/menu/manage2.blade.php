@@ -6,7 +6,7 @@
 </div>
  <section class="container">
  <div class="row" style=" padding:2rem;" >
-        <div class="cell-md-8" >
+        <div class="cell-md-12" >
             @include('back.alert')
 
             <form method="post" action="{{ route('admin.leadership.store') }}" enctype="multipart/form-data">
@@ -21,16 +21,16 @@
                         <input type="text"  name="address" placeholder="Enter Address" required/>
                     </div>
                     <div class="form-group">
-                        <label>Telephone</label>
+                        <label>Phone No</label>
                         <input type="number"  name="phone" placeholder="Enter phone number" required/>
                     </div>
                     <div class="form-group">
                         <label>Email Address</label>
-                        <input type="email"  name="email" placeholder="Enter email" required/>
+                        <input type="email"  name="email" placeholder="Enter email" />
                     </div>
                     <div class="form-group">
                         <label>Designation</label>
-                        <input type="text"  name="designation" placeholder="Enter Designation" required/>
+                        <input type="text"  name="designation" placeholder="Enter Designation" />
                     </div>
                     <div class="form-group">
                         <label>Website</label>
@@ -40,7 +40,7 @@
                     <div class="form-group container" style="border: 1px black solid; padding-bottom:5px;" >
                         <p>Photo</p>
                         <img src="" style="height: 200px;" id="photo"/>
-                        <input type="file" name="image" data-role="file" onchange="readURL(this);" data-button-title="..." >
+                        <input type="file" name="image" data-role="file" onchange="readURL(this);" data-button-title="..." required>
                     </div>
                     <div class="form-group">
                         <button class="button success">Submit data</button>
@@ -53,7 +53,7 @@
     </div>
 
     <div class="row" style=" padding:2rem;" >
-        <div class="cell-md-8" >
+        <div class="cell-md-12" >
             <table class="table table-border cell-border" >
                 <tr>
                     <th>Image</th>

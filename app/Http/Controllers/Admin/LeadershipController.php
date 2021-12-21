@@ -17,7 +17,9 @@ class LeadershipController extends Controller
         $leader->phone = $request->phone;
         $leader->addresss = $request->address;
         $leader->menu_id = $request->menu_id;
-        $leader->image = $request->image->store('back/img/leadership');
+        if($request->hasFile('image')){
+            $leader->image = $request->image->store('back/img/leadership');
+        }
         $leader->website = $request->website;
         $leader->save();
         return redirect()->back()->with('success','Member added successfully !');

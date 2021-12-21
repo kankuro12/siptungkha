@@ -34,6 +34,7 @@
                             <option value="1">For Simple</option>
                             <option value="2">For Pdf file upload</option>
                             <option value="3">For Leadership Member</option>
+                            <option value="4">Heading</option>
                         </select>
                      </div>
 
@@ -62,15 +63,18 @@
                                     @foreach ($attr->submenu as $item)
                                         <ul>
                                             <li>{{ $item->title }}
-                                                    <a href="{{ route('admin.menu.delete',$item->id)}}" class="button danger" onclick="return confirm('Are You Sure?');">Del</a>
-                                                    <a href="{{ route('admin.menu.manage',$item->id)}}" class="button success" >Manage</a>
+                                                    @if(! ($item->hasmembers() || $item->haslibrary()))
+                                                     <a href="{{ route('admin.menu.delete',$item->id)}}" class="button danger" onclick="return confirm('Are You Sure?');">Del</a>
+                                                    @endif
+                                                    <a href="{{ route('admin.menu.manage',$item->id)}}" class="button success" target="_blank">Manage</a>
                                             </li>
                                             @if (count($item->submenu))
                                                 @foreach ($item->submenu as $item1)
                                                     <ul>
                                                         <li>{{ $item1->title }}
+
                                                           <a href="{{ route('admin.menu.delete',$item1->id)}}" class="button danger" onclick="return confirm('Are You Sure?');">Del</a>
-                                                          <a href="{{ route('admin.menu.manage',$item1->id)}}" class="button success" >Manage</a>
+                                                          <a href="{{ route('admin.menu.manage',$item1->id)}}" class="button success" target="_blank">Manage</a>
                                                         </li>
                                                     </ul>
                                                 @endforeach
@@ -80,8 +84,13 @@
                                 @endif
                         </td>
                         <td>
-                            <a href="{{ route('admin.menu.delete',$attr->id)}}" class="button danger" onclick="return confirm('Are You Sure?');">Del</a>
+                            @if ( $attr->type!=4 && $attr->submenu->count()<=0)
+                                <a href="{{ route('admin.menu.manage',$attr->id)}}" class="button success" target="_blank">Manage</a>
 
+                            @endif
+                            @if(! ($attr->hasmembers() || $attr->haslibrary() || count($attr->submenu)>0))
+                                <a href="{{ route('admin.menu.delete',$attr->id)}}" class="button danger" onclick="return confirm('Are You Sure?');">Del</a>
+                            @endif
                                {{-- <a href="{{ route('admin.menu.manage',$attr->id)}}" class="button success" >Manage</a> --}}
 
                         </td>

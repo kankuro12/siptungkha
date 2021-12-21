@@ -22,6 +22,17 @@ class Menu extends Model
         }
     }
 
+    public function haslibrary()
+    {
+        return Elibrary::where('menu_id',$this->id)->count()>0;
+    }
+
+    public function hasmembers()
+    {
+        return Leadership::where('menu_id',$this->id)->count()>0;
+    }
+
+
 public function getName(){
     if($this->parent_id==0){
         return $this->title;
