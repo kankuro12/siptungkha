@@ -32,6 +32,11 @@ Route::prefix('news')->name('news.')->group(function () {
      Route::get('/{id}/','NewsEventController@singleNews')->name('single');
 });
 
+Route::prefix('notice')->name('notice.')->group(function () {
+    Route::get('/','NewsEventController@noticeList')->name('list');
+    Route::get('/{id}','NewsEventController@singleNotice')->name('single');
+});
+
 Route::prefix('event')->name('event.')->group(function () {
     Route::get('/','NewsEventController@eventList')->name('list');
     Route::get('/{id}/','NewsEventController@singleEvent')->name('single');

@@ -38,13 +38,13 @@
           <div class="updates-title">
             Updates
           </div>
-          <marquee behavior="" onmouseover="this.stop();" onmouseout="this.start();" direction="up">
-              @foreach ($news as $item)
+          {{-- <marquee behavior="" onmouseover="this.stop();" onmouseout="this.start();" direction="up"> --}}
               <ul class="updates-list">
-                <li> <a href="{{ route('news.single',$item->id)}}">{{ $item->title }}</a></li>
+                @foreach ($notices as $item)
+                    <li> <a href="{{ route('notice.single',$item->id)}}">{{ $item->title }}</a></li>
+                @endforeach
               </ul>
-              @endforeach
-          </marquee>
+          {{-- </marquee> --}}
         </div>
 
         <div class="theme-video mt-3">
