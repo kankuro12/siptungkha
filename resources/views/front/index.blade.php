@@ -142,7 +142,10 @@
     <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-body p-1">
+            <div class="modal-body p-1" style="position: relative;">
+                <button style="position: absolute;top:-15px;right:-15px;height:30px;width:30px;border-radius:50%;border:none;background: white;" data-dismiss="modal" onclick=" $('#exampleModalLong').modal('hide');">
+                    &times;
+                </button>
                 <img onclick="window.location.href='{{$modal->link}}';" src="{{asset($modal->image)}}" alt="" class="w-100">
             </div>
         </div>
