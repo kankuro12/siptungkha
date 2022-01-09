@@ -112,6 +112,12 @@
                 <span class="caption">Menus</span>
             </a>
     </li>
+    <li>
+        <a href="{{ route('admin.popups.index')}}">
+            <span class="icon"><span class="mif-organization"></span></span>
+            <span class="caption">Popups</span>
+        </a>
+</li>
 
     {{-- <li>
        <a href="{{ route('admin.menu.manage.page')}}">
