@@ -16,6 +16,7 @@ use App\Models\Message;
 use App\Models\News;
 use App\Models\Notice;
 use App\Models\Patner;
+use App\Models\Popup;
 use App\Models\Video;
 use Illuminate\Http\Request;
 
@@ -31,7 +32,9 @@ class FrontController extends Controller
         $adv = Adv::all();
         $advs = Adv::latest()->take(4)->get();
         $notices = Notice::latest()->take(5)->get();
-        return view('front.index',compact('notices','news','newstab','event','activity','patner','adv','advs'));
+        $modal=Popup::where('active',1)->first();
+
+        return view('front.index',compact('modal','notices','news','newstab','event','activity','patner','adv','advs'));
     }
     public function aboutUs(){
         return view('front.page.about');

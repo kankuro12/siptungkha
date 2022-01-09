@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Admin\PopupController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -194,6 +194,16 @@ Route::prefix('admin')->name('admin.')->middleware('role:admin')->group(function
     Route::prefix('leadership')->name('leadership.')->group(function () {
         Route::post('/store','Admin\LeadershipController@store')->name('store');
         Route::get('/del/{id}/','Admin\LeadershipController@delete')->name('delete');
+    });
+
+    Route::prefix('popups')->name('popups.')->group(function () {
+        Route::get('',[PopupController::class,'index'])->name('index');
+        Route::post('store',[PopupController::class,'store'])->name('store');
+        Route::get('del/{id}',[PopupController::class,'del'])->name('del');
+        Route::get('active/{id}',[PopupController::class,'active'])->name('active');
+        Route::get('deactive/{id}',[PopupController::class,'deactive'])->name('deactive');
+        // Route::post('/store','Admin\LeadershipController@store')->name('store');
+        // Route::get('/del/{id}/','Admin\LeadershipController@delete')->name('delete');
     });
 
     Route::prefix('user')->name('user.')->group(function () {

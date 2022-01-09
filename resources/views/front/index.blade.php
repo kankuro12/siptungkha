@@ -136,4 +136,27 @@
       </div>
     </div>
   </div> --}}
+
+  @if($modal!=null)
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body p-1">
+                <img onclick="window.location.href='{{$modal->link}}';" src="{{asset($modal->image)}}" alt="" class="w-100">
+            </div>
+        </div>
+        </div>
+    </div>
+  @endif
+@endsection
+@section('js')
+@if ($modal!=null)
+<script>
+    $(document).ready(function () {
+
+        $('#exampleModalLong').modal('show');
+    });
+</script>
+@endif
 @endsection
