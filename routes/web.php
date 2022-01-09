@@ -193,6 +193,7 @@ Route::prefix('admin')->name('admin.')->middleware('role:admin')->group(function
 
     Route::prefix('leadership')->name('leadership.')->group(function () {
         Route::post('/store','Admin\LeadershipController@store')->name('store');
+        Route::match(['POST','GET'],'/edit/{leader}','Admin\LeadershipController@edit')->name('edit');
         Route::get('/del/{id}/','Admin\LeadershipController@delete')->name('delete');
     });
 

@@ -68,7 +68,7 @@ class FrontController extends Controller
         $menu = Menu::where('id',$id)->first();
         $pageIitem = Menupage::where('menu_id',$id)->first();
         $library = Elibrary::latest()->where('menu_id',$id)->get();
-        $leader = Leadership::latest()->where('menu_id',$id)->get();
+        $leader = Leadership::orderBy('sn','asc')->where('menu_id',$id)->get();
         if($menu->type == 1){
             return view('front.page.dynamic',compact('pageIitem'));
         }else if($menu->type == 2){
